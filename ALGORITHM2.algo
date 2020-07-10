@@ -1,0 +1,65 @@
+ALGORITHM overlapping sum
+VAR 
+arr1 ,arr2 : ARRAY_OF INTEGER[10] ; 
+numbers : ARRAY_OF INTEGER[20]
+dict := HASH_TABLE<INTEGER,INTEGER> ;
+i , count :INTEGER ;
+sum : INTEGER := 0 ;
+BEGIN
+    Write("Dimension of 1st table: ");
+
+    Read(N);
+
+    Write("Dimension of 2nd table: ");
+
+    Read(M);
+
+    //Fill in the tables
+
+    FOR i FROM 0 TO N-1 DO
+
+        Write("tab1[",i,"]= ");
+
+        Read(tab1[i]);
+
+    END_FOR
+
+    FOR i FROM 0 TO M-1 DO
+
+        Write("tab2[",i,"]= ");
+
+        Read(tab2[i]);
+
+    END_FOR
+
+  
+FOR i FROM 0 TO arr1.length -1   DO
+   IF (dict.lookup(arr1[i])) THEN
+      count := dict.get(arr1[i])
+      dict.insert(arr1[i] , count + 1)
+   ELSE
+       dict.insert(arr1[i] , 1 )
+   END_IF
+END_FOR
+
+
+FOR i FROM 0 TO arr2.length -1   DO
+   IF (dict.lookup(arr2[i])) THEN
+      count := dict.get(arr2[i])
+      dict.insert(arr2[i] , count + 1)
+   ELSE
+       dict.insert(arr2[i] , 1 )
+   END_IF
+END_FOR
+
+//get the sum 
+numbers:= getKeys(dict) 
+FOR i FROM 0 TO numbers.length -1    DO
+    IF (dict.get(numbers[i]) = 2 ) THEN
+        sum := sum + numbers[i]*2
+    END_IF
+END_FOR 
+
+Write(sum);
+
+END
